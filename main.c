@@ -162,7 +162,7 @@ int draw (int field[][field_index]) {
 int isgameover (int field[][field_index]) {
 	for (int rot = 0;rot < 4;rot++) {
 		for (int i = 0;i < field_index;i++) {
-			for (int j = 0; j < field_index;j++) {
+			for (int j = 0; j < field_index - 1;j++) {
 				if (field[i][j] == 0 || field[i][j] == field[i][j + 1]) {
 					return 0;
 				}
