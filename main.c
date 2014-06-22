@@ -134,17 +134,17 @@ int NTZ(unsigned long x) {
 
 int draw (int field[][field_index]) {
 	char *tile[] = {
-		"+-----+",
-		"| % 4d|",
-		"+-----+",
+		"       ",
+		"  % 4d ",
+		"       ",
 	};
 	char *waku[] = {
-		"+-----+",
-		"|     |",
-		"+-----+",
+		"       ",
+		"       ",
+		"       ",
 	};
 	short colors = 0, color[] = {
-		250,225,226,215,216,210,209,222,223,224,220,221,59,59,
+		235,225,226,215,216,210,209,222,223,224,220,221,59,59,
 	};
 	for (int i = 0;i < field_index;i++) { 
 		for (int j = 0;j < field_index;j++) { 
