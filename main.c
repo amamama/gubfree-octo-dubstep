@@ -254,7 +254,8 @@ void) {
 	register_colors();
 	register_pair();
 	for (;game();) {
-		;
+		mvprintw(6, 6, "Game Over");
+		getch();
 	}
 	endwin();
 	return 0;
