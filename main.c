@@ -164,12 +164,12 @@ int isgameover (int field[][field_index]) {
 		for (int i = 0;i < field_index;i++) {
 			for (int j = 0; j < field_index;j++) {
 				if (field[i][j] == 0 || field[i][j] == field[i][j + 1]) {
-					return 1;
+					return 0;
 				}
 			}
 		}
 	}
-	return 0;
+	return 1;
 }
 
 enum _DIR choose_dir(int i) {
@@ -199,7 +199,7 @@ int game (void) {
 	int field[field_index][field_index] = {{0}};
 	int restart = 0, c = 0;
 	enum _DIR dir = LEFT;
-	for (init(field),draw(field);isgameover(field) && restart == 0;draw(field)){
+	for (init(field),draw(field);!isgameover(field) && restart == 0;draw(field)){
 		c = getch();
 		if (c == 'r') {
 			restart = 1;
