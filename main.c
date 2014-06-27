@@ -88,10 +88,10 @@ int search_recursion (int field[][field_index], int x, int y, int num, int flag[
 		return 1;
 	} else {
 		flag[y][x] = 1;
-		return search_recursion(field, x - 1, y - 1, num, flag) ||
-		search_recursion(field, x - 1, y + 1, num, flag) ||
-		search_recursion(field, x + 1, y - 1, num, flag) ||
-		search_recursion(field, x + 1, y + 1, num, flag);
+		return search_recursion(field, x - 1, y, num, flag) ||
+		search_recursion(field, x + 1, y, num, flag) ||
+		search_recursion(field, x, y - 1, num, flag) ||
+		search_recursion(field, x, y + 1, num, flag);
 	}
 
 	return 0;
@@ -119,7 +119,7 @@ int init (int field[][field_index]) {
 	return 0;
 }
 
-int count_bits(unsigned long i) {
+inline int count_bits(unsigned long i) {
 	i = (i & 0x55555555) + (i >> 1 & 0x55555555);
 	i = (i & 0x33333333) + (i >> 2 & 0x33333333);
 	i = (i & 0x0f0f0f0f) + (i >> 4 & 0x0f0f0f0f);
@@ -128,7 +128,7 @@ int count_bits(unsigned long i) {
 }
 
 
-int NTZ(unsigned long x) {
+inline int NTZ(unsigned long x) {
 	return count_bits((x & -x) -1);
 }
 
@@ -160,18 +160,18 @@ int draw (int field[][field_index]) {
 }
 
 int isgameover (int field[][field_index]) {
+	int ret = 1;
 	for (int rot = 0;rot < 4;rot++) {
 		for (int i = 0;i < field_index;i++) {
 			for (int j = 0; j < field_index;j++) {
 				if (field[i][j] == 0 || (j < field_index - 1 && field[i][j] == field[i][j + 1])) {
-					return 0;
+					ret = 0;
 				}
 			}
 		}
 		rotate(field);
 	}
-	rotate(field);
-	return 1;
+	return ret;
 }
 
 enum _DIR choose_dir(int i) {
